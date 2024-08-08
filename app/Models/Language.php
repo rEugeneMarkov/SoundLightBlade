@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
 
 /**
  * 
@@ -63,5 +64,12 @@ class Language extends Model
             ->where('active', true)
             ->where('fallback', true)
             ->first();
+    }
+
+    public static function getActive(): Collection
+    {
+        return self::query()
+            ->where('active', true)
+            ->get();
     }
 }
