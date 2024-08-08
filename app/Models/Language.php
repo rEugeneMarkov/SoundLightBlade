@@ -30,4 +30,23 @@ class Language extends Model
         'default' => 'boolean',
         'fallback' => 'boolean',
     ];
+
+    public function getStateText(): string
+    {
+        $state = [];
+
+        if ($this->active) {
+            $state[] = 'Active';
+        }
+
+        if ($this->default) {
+            $state[] = 'Default';
+        }
+
+        if ($this->fallback) {
+            $state[] = 'Fallback';
+        }
+
+        return implode(', ', $state);
+    }
 }

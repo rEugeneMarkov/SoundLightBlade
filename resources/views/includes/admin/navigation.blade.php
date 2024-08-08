@@ -13,6 +13,9 @@
                     <x-admin.navigation.nav-link :href="route('admin.home')" :active="request()->routeIs('admin.home')">
                         {{ __('Home') }}
                     </x-admin.navigation.nav-link>
+                    <x-admin.navigation.nav-link :href="route('admin.languages.index')" :active="request()->routeIs('admin.languages.*')">
+                        {{ __('Languages') }}
+                    </x-admin.navigation.nav-link>
                 </div>
             </div>
 
