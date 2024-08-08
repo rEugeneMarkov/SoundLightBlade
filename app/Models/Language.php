@@ -72,4 +72,10 @@ class Language extends Model
             ->where('active', true)
             ->get();
     }
+    public static function findActive(string $id): ?self
+    {
+        return self::query()
+            ->where('active', true)
+            ->find($id);
+    }
 }

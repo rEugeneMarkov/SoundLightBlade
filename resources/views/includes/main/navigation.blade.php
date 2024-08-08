@@ -152,20 +152,24 @@
                 </div>
             </div> --}}
 
-            <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Features</a>
-            <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Marketplace</a>
-            <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Company</a>
+            <a href="#" class="text-sm font-semibold leading-6 text-gray-900">{{ __('Features') }}</a>
+            <a href="#" class="text-sm font-semibold leading-6 text-gray-900">{{ __('Marketplace') }}</a>
+            <a href="#" class="text-sm font-semibold leading-6 text-gray-900">{{ __('Company') }}</a>
         </div>
+
         <div class="hidden lg:flex lg:flex-1 lg:justify-end">
+            <div class="mr-3">
+                @include('includes.main.language-switcher')
+            </div>
             @if (!Auth::check())
                 <div>
                     <a href={{ route('register') }} class="text-sm font-semibold leading-6 text-gray-900">
-                        Register
+                        {{ __('Register') }}
                     </a>
                 </div>
                 <div class="ml-3">
                     <a href={{ route('login') }} class="text-sm font-semibold leading-6 text-gray-900">
-                        Log in <span aria-hidden="true">&rarr;</span>
+                        {{ __('Log in') }} <span aria-hidden="true">&rarr;</span>
                     </a>
                 </div>
             @else
@@ -178,7 +182,7 @@
                     @csrf
 
                     <button type="submit" class="text-sm font-semibold leading-6 text-gray-900">
-                        Log out <span aria-hidden="true">&rarr;</span>
+                        {{ __('Log out') }} <span aria-hidden="true">&rarr;</span>
                     </button>
                 </form>
             @endif
@@ -186,7 +190,8 @@
 
     </nav>
     <!-- Mobile menu, show/hide based on menu open state. -->
-    <div x-cloak x-show="openMenu" class="lg:hidden" role="dialog" aria-modal="true">
+    <div x-cloak x-show="openMenu" x-on:click.away="openMenu = false" class="lg:hidden" role="dialog"
+        aria-modal="true">
         <!-- Background backdrop, show/hide based on slide-over state. -->
         <div class="fixed inset-0 z-10"></div>
         <div
@@ -267,7 +272,9 @@
                             </button>
                         </form>
                     @endif
-
+                    <div class="py-6">
+                        @include('includes.main.language-switcher')
+                    </div>
                 </div>
             </div>
         </div>

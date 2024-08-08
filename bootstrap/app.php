@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Middleware\LanguageCookieMiddleware;
 use App\Http\Middleware\LanguageHeaderMiddleware;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -24,7 +25,13 @@ return Application::configure(basePath: dirname(__DIR__))
         },
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->append(LanguageHeaderMiddleware::class);
+        $middleware->append([
+            LanguageHeaderMiddleware::class,
+            LanguageCookieMiddleware::class,
+        ]);
+        $middleware->encryptCookies(except: [
+            'language',
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
