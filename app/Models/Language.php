@@ -49,4 +49,19 @@ class Language extends Model
 
         return implode(', ', $state);
     }
+    public static function findDefault(): ?self
+    {
+        return self::query()
+            ->where('active', true)
+            ->where('default', true)
+            ->first();
+    }
+
+    public static function findFallback(): ?self
+    {
+        return self::query()
+            ->where('active', true)
+            ->where('fallback', true)
+            ->first();
+    }
 }
